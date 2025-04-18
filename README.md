@@ -11,6 +11,5 @@ Instalation : </br>
 3 - In addon setings setup Lan Relay IP, port, login, password, MQTT settings </br>
 4 - Take examples below, ajust for self </br>
 
-
-Homeassitant configuration examples :  </br>
+Homeassitant configuration example :  https://github.com/mamontuka/socket-giant-ha/tree/main/entities_card_example </br>
 
