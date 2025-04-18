@@ -1,0 +1,22 @@
+# by Oleh Mamont, free for use and modification
+# add this section to Home Assistant interface card text template
+
+type: entities
+entities:
+  - entity: switch.socket_giant_1_rl_1
+  - entity: switch.socket_giant_1_rl_2
+  - entity: switch.socket_giant_1_rl_3
+  - entity: switch.socket_giant_1_rl_4
+  - entity: switch.socket_giant_1_rl_5
+  - entity: switch.socket_giant_1_rl_6
+  - entity: switch.socket_giant_1_rl_7
+  - entity: switch.socket_giant_1_rl_8
+  - entity: switch.socket_giant_1_rl_9
+  - entity: switch.socket_giant_1_rl_10
+  - entity: switch.socket_giant_1_rl_11
+  - entity: switch.socket_giant_1_rl_12
+  - entity: switch.socket_giant_1_rl_13
+  - entity: switch.socket_giant_1_rl_14
+  - entity: switch.socket_giant_1_rl_15
+  - entity: switch.socket_giant_1_rl_16
+state_color: true

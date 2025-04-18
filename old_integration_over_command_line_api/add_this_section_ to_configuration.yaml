@@ -1,0 +1,138 @@
+
+# by Oleh Mamont, free for use and modification
+# add this section to main Home Assistant configuration file - configuration.yaml
+# vkmodules socket-giant
+# admin:admin - default login:password
+# 192.168.0.191 - default IP address
+# first relay port actualy have 0="zero" number, in friendly name - marked as "RL-1"
+# 
+
+command_line:
+  - switch:
+        name: "Socket-Giant #1 RL-1"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=0"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=0"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led0>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-2"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=1"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=1"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led1>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-3"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=2"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=2"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led2>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-4"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=3"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=3"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led3>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-5"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=4"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=4"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led4>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-6"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=5"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=5"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led5>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-7"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=6"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=6"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led6>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-8"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=7"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=7"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led7>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-9"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=8"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=8"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led8>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-10"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=9"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=9"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led9>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-11"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=10"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=10"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led10>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-12"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=11"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=11"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led11>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-13"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=12"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=12"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led12>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-14"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=13"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=13"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led13>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-15"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=14"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=14"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led14>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
+  - switch:
+        name: "Socket-Giant #1 RL-16"
+#        scan_interval: 2
+        command_on: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=15"
+        command_off: "curl -u admin:admin http://192.168.0.191/protect/leds.cgi?led=15"
+        command_state: "curl -s -u admin:admin http://192.168.0.191/protect/status.xml | grep \"<led15>\" | sed 's/^[^>]*>//g' | sed 's/<[^<]*$//g'"
+        value_template: '{{ value[0:1] == "1" }}'
+
