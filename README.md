@@ -3,7 +3,7 @@
 https://vkmodule.com.ua/Ethernet/SocketGiant.html </br>
 
 Also here you can find official software and documentation for it : </br>
-https://github.com/mamontuka/socket-giant-ha-dev/tree/main/official_software_and_documentation
+https://github.com/mamontuka/socket-giant-ha/tree/main/official_software_and_documentation
 
 Instalation : </br>
 1 - Add this repository to addons (three dots) - https://github.com/mamontuka/socket-giant-ha </br>
