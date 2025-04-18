@@ -9,7 +9,7 @@ Instalation : </br>
 1 - Add this repository to addons (three dots) - https://github.com/mamontuka/socket-giant-ha </br>
 2 - Install this addon </br>
 3 - In addon setings setup Lan Relay IP, port, login, password, MQTT settings </br>
-4 - Take examples below, ajust for self </br>
+4 - Take example below, ajust for self </br>
 
-Homeassitant configuration example :  https://github.com/mamontuka/socket-giant-ha/tree/main/entities_card_example </br>
+Homeassistant entities card configuration example :  https://github.com/mamontuka/socket-giant-ha/tree/main/entities_card_example </br>
 
