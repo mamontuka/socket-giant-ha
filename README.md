@@ -1,6 +1,6 @@
 <b>Homeassistant Addon for Ukrainian Socket-Giant Lan Relay Board</b> </br>
 
-https://vkmodule.com.ua/Ethernet/SocketGiant.html </br>
+https://vkmodule.com.ua/Ethernet/SocketGiant_ua.html </br>
 
 Also here you can find official software and documentation for it : </br>
 https://github.com/mamontuka/socket-giant-ha/tree/main/official_software_and_documentation
