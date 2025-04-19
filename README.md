@@ -15,7 +15,7 @@ Instalation : </br>
 
 Homeassistant entities card configuration example :  https://github.com/mamontuka/socket-giant-ha/tree/main/entities_card_example </br>
 
-**UPDATE 1.1 - added multiboard/relay modules support, tunable relay count (for device models with less relays)** </br>
+**UPDATE 1.1 - added multiboard/relay modules support, tunable relay count (for device models with less relays), switches inverting - normal connected/normal disconected** </br>
  </br>
 Addon config explanation : </br>
 
