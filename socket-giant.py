@@ -88,7 +88,7 @@ def announce_device_and_switches(client, board_config):
             "identifiers": [board_config["device_id"]],
             "name": board_config["friendly_name"],
             "model": "Socket Giant",
-            "manufacturer": "VKModules"
+            "manufacturer": "VKmodule"
         }
     }
     client.publish(device_config_topic, json.dumps(payload), retain=True)
