@@ -12,29 +12,65 @@ arch:
   - i386
 startup: services
 options:
-  device_id: "socket_giant_1"
-  friendly_name: "Socket Giant 1"
-  relay_ip: "192.168.0.191"
-  relay_port: 80
-  relay_login: "admin"
-  relay_password: "admin"
-  relay_poll_interval: 2
+  relay_boards:
+      # Board ID for prefix to entities unique ID, like "socket_giant_1_rl_5"
+    - device_id: "socket_giant_1"
+      # You have this board IRL ? true - yes, false - SKIP this board
+      enabled: true
+      # Changeable board name in MQTT anouncement
+      friendly_name: "Socket Giant 1"
+      # Board IP address
+      relay_ip: "192.168.0.191"
+      # Boart port, default 80, but can be changed if you use board behind NAT
+      relay_port: 80
+      # Default login and password
+      relay_login: "admin"
+      relay_password: "admin"
+      # How much relays this board have ? Usable for another VKmodules relay devices with same API
+      relay_count: 16
+      # Default relays state - printed here relays numbers have NC (normaly connected) wiring,
+      # not printed - normaly disconnected. Thats inverting switches in Homeassistant
+      inverted_relays: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      # Board ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
+    - device_id: "socket_giant_2"
+      # You have this board IRL ? true - yes, false - SKIP this board
+      enabled: false
+      # Changeable board name in MQTT anouncement
+      friendly_name: "Socket Giant 2"
+      # Board IP address
+      relay_ip: "192.168.0.192"
+      # Boart port, default 80, but can be changed if you use board behind NAT
+      relay_port: 80
+      # Default login and password
+      relay_login: "admin"
+      relay_password: "admin"
+      # How much relays this board have ? Usable for another VKmodules relay devices with same API
+      relay_count: 8
+      # Default relays state - printed here relays numbers have NC (normaly connected) wiring,
+      # not printed - normaly disconnected. Thats inverting switches in Homeassistant
+      inverted_relays: [3, 4, 5]
+      # More VKmodules boards/relay modules with same API can be added below by copying and ajusting 
+      # example configurations
+  # MQTT settings
   mqtt_broker: "core-mosquitto"
   mqtt_port: 1883
   mqtt_username: "homeassistant"
   mqtt_password: "mqtt_password_here"
-  inverted_relays: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  relay_poll_interval: 2
 schema:
-  device_id: str
-  friendly_name: str
-  relay_ip: str
-  relay_port: int
-  relay_login: str
-  relay_password: password
-  relay_poll_interval: int
+  relay_boards:
+    - device_id: str
+      enabled: bool
+      friendly_name: str
+      relay_ip: str
+      relay_port: int
+      relay_login: str
+      relay_password: password
+      relay_count: int
+      inverted_relays:
+        - int
   mqtt_broker: str
   mqtt_port: int
   mqtt_username: str
   mqtt_password: password
-  inverted_relays:
-    - int
+  relay_poll_interval: int
