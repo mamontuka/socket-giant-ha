@@ -1,6 +1,6 @@
 # <b>Homeassistant Addon for Ukrainian Socket-Giant Lan Relay Board</b> </br>
 
-This Addon may work fine with another VKmodules relays if they have same API
+**This Addon may work fine with another VKmodules relays if they have same API**
 
 https://vkmodule.com.ua/Ethernet/SocketGiant_ua.html </br>
 
