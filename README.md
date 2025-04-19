@@ -32,7 +32,7 @@ Addon config explanation : </br>
     # Default login and password for board 1
       relay_login: admin
       relay_password: admin
-    # How much relays this board have ? Usable for another VKmodules relay devices with same API
+    # How much relays this board have ? Usable for another VKmodule relay devices with same API
       relay_count: 16
     # Default relays state - printed here relays numbers have NC (normaly connected) wiring, not printed - normaly disconnected.
     # Thats inverting switches in Homeassistant
@@ -59,7 +59,7 @@ Addon config explanation : </br>
     # Default login and password for board 2
       relay_login: admin
       relay_password: admin
-    # How much relays this board have ? Usable for another VKmodules relay devices with same API
+    # How much relays this board have ? Usable for another VKmodule relay devices with same API
       relay_count: 8
     # Default relays state - printed here relays numbers have NC (normaly connected) wiring, not printed - normaly disconnected.
     # Thats inverting switches in Homeassistant
