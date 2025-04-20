@@ -29,7 +29,7 @@ Addon config explanation : </br>
       friendly_name: Socket Giant 1
     # Board 1 IP address
       relay_ip: 192.168.0.191
-    # Boart port, default 80, but can be changed if you use board behind NAT
+    # Board port, default 80, but can be changed if you use board behind NAT
       relay_port: 80
     # Default login and password for board 1
       relay_login: admin
@@ -60,7 +60,7 @@ Addon config explanation : </br>
       friendly_name: Socket Giant 2
     # Board 2 IP address
       relay_ip: 192.168.0.192
-    # Boart port, default 80, but can be changed if you use board behind NAT
+    # Board port, default 80, but can be changed if you use board behind NAT
       relay_port: 80
     # Default login and password for board 2
       relay_login: admin
