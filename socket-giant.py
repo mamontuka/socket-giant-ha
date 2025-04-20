@@ -32,27 +32,25 @@ MQTT_BROKER     = config["mqtt_broker"]
 MQTT_PORT       = config.get("mqtt_port", 1883)
 MQTT_USERNAME   = config.get("mqtt_username")
 MQTT_PASSWORD   = config.get("mqtt_password")
-
 POLL_INTERVAL   = config.get("relay_poll_interval", 2)
 
 # === Relay Status Polling ===
 def get_relay_states(board_config):
-    if not board_config.get("enabled", True):  # Skip disabled boards
+    if not board_config.get("enabled", True):
         print(f"[SKIP] Skipping disabled board {board_config['device_id']}")
         return {}
 
     try:
         url = f"http://{board_config['relay_ip']}:{board_config['relay_port']}/protect/status.xml"
- #       print(f"[INFO] Fetching status from {url}")
         r = requests.get(url, auth=(board_config['relay_login'], board_config['relay_password']), timeout=2)
-        r.raise_for_status()  # Raise an exception if the status code is not 200
+        r.raise_for_status()
         xml = ET.fromstring(r.text)
         states = {}
-        num_relays = len(board_config['inverted_relays'])
+        num_relays = board_config['relay_count']
         for i in range(num_relays):
             raw = xml.find(f"./led{i}").text.strip()
             state = "ON" if raw == "1" else "OFF"
-            if i in board_config['inverted_relays']:
+            if i in board_config.get('inverted_relays', []):
                 state = "OFF" if state == "ON" else "ON"
             states[i] = state
         return states
@@ -62,7 +60,6 @@ def get_relay_states(board_config):
     except Exception as e:
         print(f"[ERROR] Unexpected error for {board_config['device_id']}: {e}")
         return {}
-
 
 # === Relay Toggle ===
 def set_relay(board_config, index, state):
@@ -79,7 +76,6 @@ def announce_device_and_switches(client, board_config):
         print(f"[SKIP] Skipping disabled board {board_config['device_id']}")
         return
 
-    # Announce main device
     device_config_topic = f"homeassistant/socket_giant/{board_config['device_id']}/config"
     payload = {
         "name": board_config["friendly_name"],
@@ -92,13 +88,13 @@ def announce_device_and_switches(client, board_config):
         }
     }
     client.publish(device_config_topic, json.dumps(payload), retain=True)
-    print(f"[MQTT] Announced device {board_config['device_id']} as {board_config['friendly_name']}")
+    print(f"[MQTT] Announced device {board_config['device_id']}")
 
-    # Announce relays as switches
-    num_relays = board_config["relay_count"]  # Update here to use relay_count
+    num_relays = board_config["relay_count"]
     for i in range(num_relays):
         unique_id = f"{board_config['device_id']}_relay_{i}"
         config_topic = f"homeassistant/switch/{board_config['device_id']}/relay{i}/config"
+
         relay_payload = {
             "name": f"RL-{i+1}",
             "state_topic": f"homeassistant/socket_giant/{board_config['device_id']}/relay{i}/state",
@@ -114,6 +110,12 @@ def announce_device_and_switches(client, board_config):
                 "manufacturer": "VKmodule"
             }
         }
+
+        if i in board_config.get("triggers", []):
+            relay_payload["retain"] = False
+            relay_payload["optimistic"] = True
+            relay_payload["icon"] = "mdi:flash"
+
         client.publish(config_topic, json.dumps(relay_payload), retain=True)
         client.subscribe(relay_payload["command_topic"])
         client.publish(relay_payload["state_topic"], "OFF", retain=True)
@@ -123,10 +125,8 @@ def announce_device_and_switches(client, board_config):
 def on_connect(client, userdata, flags, rc):
     print(f"[MQTT] Connected with code {rc}")
     for board_config in config["relay_boards"]:
-        if not board_config.get("enabled", True):
-            print(f"[SKIP] Skipping disabled board {board_config['device_id']}")
-            continue
-        announce_device_and_switches(client, board_config)
+        if board_config.get("enabled", True):
+            announce_device_and_switches(client, board_config)
 
 def on_message(client, userdata, msg):
     topic = msg.topic
@@ -139,9 +139,17 @@ def on_message(client, userdata, msg):
             idx = int(topic.split("/")[-2].replace("relay", ""))
             for board_config in config["relay_boards"]:
                 if board_config["device_id"] == board_id:
-                    if idx in board_config['inverted_relays']:
+                    if idx in board_config.get("inverted_relays", []):
                         payload = "OFF" if payload == "ON" else "ON"
-                    set_relay(board_config, idx, payload)
+
+                    if idx in board_config.get("triggers", []):
+                        # Momentary pulse
+                        set_relay(board_config, idx, "ON")
+                        time.sleep(0.2)
+                        set_relay(board_config, idx, "OFF")
+                        client.publish(f"homeassistant/socket_giant/{board_config['device_id']}/relay{idx}/state", "OFF", retain=False)
+                    else:
+                        set_relay(board_config, idx, payload)
                     break
         except Exception as e:
             print(f"[ERROR] Processing command: {e}")
@@ -165,9 +173,10 @@ try:
             if not board_config.get("enabled", True):
                 continue
 
-            # Only try to fetch the status if the board is enabled
             states = get_relay_states(board_config)
             for i, state in states.items():
+                if i in board_config.get("triggers", []):
+                    state = "OFF"
                 client.publish(f"homeassistant/socket_giant/{board_config['device_id']}/relay{i}/state", state, retain=True)
         time.sleep(POLL_INTERVAL)
 except KeyboardInterrupt:
