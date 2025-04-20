@@ -50,8 +50,8 @@ Addon config explanation : </br>
         - 8
     # relay numbers what act like trigger, instead two position switch
       triggers:
+        - 14
         - 15
-        - 16
     # Board 2 ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
       - device_id: socket_giant_2
     # You have this board IRL ? true - yes, false - SKIP this board
