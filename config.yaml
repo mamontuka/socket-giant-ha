@@ -1,6 +1,6 @@
 name: "Socket-Giant Lan Relay"
 description: "VKmodule.com.ua Socket-Giant Lan Relay Addon"
-version: "1.1"
+version: "1.2"
 slug: "socket_giant"
 url: "https://github.com/mamontuka/socket-giant-ha"
 init: false
@@ -31,6 +31,8 @@ options:
       # Default relays state - printed here relays numbers have NC (normaly connected) wiring,
       # not printed - normaly disconnected. Thats inverting switches in Homeassistant
       inverted_relays: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      # relay numbers what act like trigger, instead switch
+      triggers: [15, 16]
       # Board ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
     - device_id: "socket_giant_2"
       # You have this board IRL ? true - yes, false - SKIP this board
@@ -49,6 +51,8 @@ options:
       # Default relays state - printed here relays numbers have NC (normaly connected) wiring,
       # not printed - normaly disconnected. Thats inverting switches in Homeassistant
       inverted_relays: [3, 4, 5]
+      # relay numbers what act like trigger, instead switch
+      triggers: [1, 2]
       # More VKmodules boards/relay modules with same API can be added below by copying and ajusting 
       # example configurations
   # MQTT settings
@@ -68,6 +72,8 @@ schema:
       relay_password: password
       relay_count: int
       inverted_relays:
+        - int
+      triggers:
         - int
   mqtt_broker: str
   mqtt_port: int
