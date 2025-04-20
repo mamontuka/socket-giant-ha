@@ -32,7 +32,7 @@ options:
       # not printed - normaly disconnected. Thats inverting switches in Homeassistant
       inverted_relays: [0, 1, 2, 3, 4, 5, 6, 7, 8]
       # relay numbers what act like trigger, instead switch
-      triggers: [15, 16]
+      triggers: [14, 15]
       # Board ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
     - device_id: "socket_giant_2"
       # You have this board IRL ? true - yes, false - SKIP this board
