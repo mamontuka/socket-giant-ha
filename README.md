@@ -17,6 +17,8 @@ Homeassistant entities card configuration example :  https://github.com/mamontuk
 
 **UPDATE 1.1 - added multiboard/relay modules support, tunable relay count (for device models with less relays), switches inverting - normal connected/normal disconected** </br>
  </br>
+**UPDATE 1.2 - added functionality for relay work logic as short time TRIGGER, instead two position switch, config logic same like have relay mode invertation** </br>
+ </br>
 Addon config explanation : </br>
 
     # Board 1 ID for prefix to entities unique ID, like "socket_giant_1_rl_5"
@@ -46,6 +48,8 @@ Addon config explanation : </br>
         - 6
         - 7
         - 8
+    # relay numbers what act like trigger, instead switch
+      triggers: [15, 16]
     # Board 2 ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
       - device_id: socket_giant_2
     # You have this board IRL ? true - yes, false - SKIP this board
@@ -67,5 +71,7 @@ Addon config explanation : </br>
         - 3
         - 4
         - 5
-      # More VKmodules boards/relay modules with same API can be added below by copying and ajusting 
-      # example configurations
+    # relay numbers what act like trigger, instead switch
+      triggers: [1, 2]
+    # More VKmodules boards/relay modules with same API can be added below by copying and ajusting 
+    # example configurations
