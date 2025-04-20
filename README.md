@@ -48,8 +48,10 @@ Addon config explanation : </br>
         - 6
         - 7
         - 8
-    # relay numbers what act like trigger, instead switch
-      triggers: [15, 16]
+    # relay numbers what act like trigger, instead two position switch
+      triggers:
+        - 15
+        - 16
     # Board 2 ID for prefix to entities unique ID, like "socket_giant_2_rl_1"
       - device_id: socket_giant_2
     # You have this board IRL ? true - yes, false - SKIP this board
@@ -71,7 +73,9 @@ Addon config explanation : </br>
         - 3
         - 4
         - 5
-    # relay numbers what act like trigger, instead switch
-      triggers: [1, 2]
+    # relay numbers what act like trigger, instead two position switch
+      triggers:
+        - 1
+        - 2
     # More VKmodules boards/relay modules with same API can be added below by copying and ajusting 
     # example configurations
