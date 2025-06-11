@@ -33,7 +33,16 @@ MQTT_PORT       = config.get("mqtt_port", 1883)
 MQTT_USERNAME   = config.get("mqtt_username")
 MQTT_PASSWORD   = config.get("mqtt_password")
 POLL_INTERVAL   = config.get("relay_poll_interval", 2)
-TRIGGER_PULSE_TIME = config.get("trigger_pulse_time", 0.2)
+
+raw_pulse_time = str(config.get("trigger_pulse_time", "0.2")).replace(",", ".")
+try:
+    TRIGGER_PULSE_TIME = float(raw_pulse_time)
+except ValueError:
+    print(f"[WARNING] Invalid trigger_pulse_time '{raw_pulse_time}', falling back to default 0.2s")
+    TRIGGER_PULSE_TIME = 0.2
+if TRIGGER_PULSE_TIME < 0.05 or TRIGGER_PULSE_TIME > 5.0:
+    print(f"[WARNING] trigger_pulse_time {TRIGGER_PULSE_TIME}s out of range (0.05–5.0s), using 0.2s")
+    TRIGGER_PULSE_TIME = 0.2
 
 # === Relay Status Polling ===
 def get_relay_states(board_config):
