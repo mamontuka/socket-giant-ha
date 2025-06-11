@@ -19,6 +19,8 @@ Homeassistant entities card configuration example :  https://github.com/mamontuk
  </br>
 **UPDATE 1.2 - added functionality for relay work logic as short time TRIGGER, instead two position switch, config logic same like have relay mode invertation** </br>
  </br>
+**UPDATE 1.3 - added configurable trigger pulse time** </br>
+ </br>
 Addon config explanation : </br>
 
     # Board 1 ID for prefix to entities unique ID, like "socket_giant_1_rl_5"
