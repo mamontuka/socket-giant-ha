@@ -33,6 +33,7 @@ MQTT_PORT       = config.get("mqtt_port", 1883)
 MQTT_USERNAME   = config.get("mqtt_username")
 MQTT_PASSWORD   = config.get("mqtt_password")
 POLL_INTERVAL   = config.get("relay_poll_interval", 2)
+TRIGGER_PULSE_TIME = config.get("trigger_pulse_time", 0.2)
 
 # === Relay Status Polling ===
 def get_relay_states(board_config):
@@ -145,7 +146,7 @@ def on_message(client, userdata, msg):
                     if idx in board_config.get("triggers", []):
                         # Momentary pulse
                         set_relay(board_config, idx, "ON")
-                        time.sleep(0.2)
+                        time.sleep(TRIGGER_PULSE_TIME)
                         set_relay(board_config, idx, "OFF")
                         client.publish(f"homeassistant/socket_giant/{board_config['device_id']}/relay{idx}/state", "OFF", retain=False)
                     else:
