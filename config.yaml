@@ -61,6 +61,7 @@ options:
   mqtt_username: "homeassistant"
   mqtt_password: "mqtt_password_here"
   relay_poll_interval: 2
+  trigger_pulse_time: 0.2
 schema:
   relay_boards:
     - device_id: str
@@ -80,3 +81,4 @@ schema:
   mqtt_username: str
   mqtt_password: password
   relay_poll_interval: int
+  trigger_pulse_time: float
